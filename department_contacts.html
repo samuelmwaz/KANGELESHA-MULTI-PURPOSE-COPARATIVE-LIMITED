@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Contacts - KANGELESHA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            /* Smooth transition for theme change */
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* --- THEME STYLES --- */
+        
+        /* Dark mode base styles */
+        body.dark-mode {
+            background-color: #0d0d0d;
+            color: #e5e7eb;
+        }
+        
+        /* Light mode base styles */
+        body.light-mode {
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+
+        /* Header Background */
+        body.dark-mode .header-bg {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        
+        body.light-mode .header-bg {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Section Backgrounds (used for the footer) */
+        body.dark-mode .section-bg {
+            background-color: #1a1a1a;
+        }
+        
+        body.light-mode .section-bg {
+            background-color: #f9fafb;
+        }
+
+        /* Card Backgrounds (Department cards) */
+        body.dark-mode .card-bg {
+            background-color: #1f2937;
+        }
+        
+        body.light-mode .card-bg {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+        }
+        
+        /* --- THEME TOGGLE SWITCH --- */
+        .theme-toggle {
+            cursor: pointer;
+            width: 60px;
+            height: 30px;
+            background-color: #4b5563;
+            border-radius: 15px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+        
+        .theme-toggle.active {
+            background-color: #f97316;
+        }
+        
+        .theme-toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .theme-toggle.active .theme-toggle-slider {
+            transform: translateX(30px);
+        }
+        /* --- END THEME STYLES --- */
+        
+        /* New style for department images */
+        .department-image {
+            width: 60px; /* Equivalent to 15rem in tailwind */
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            background-color: #f97316; /* Orange background for placeholders */
+            padding: 10px;
+        }
+        
+        /* Fallback icon styling (to match the size of the new image) */
+        .department-icon {
+            font-size: 3rem; /* Larger icon size */
+            color: #f97316;
+            margin-bottom: 1rem;
+        }
+        
+        main {
+            flex-grow: 1;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 header-bg backdrop-blur-sm shadow-lg transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="home_page.html" class="text-xl md:text-2xl font-bold text-orange-500 tracking-wider">KANGELESHA-MULTI-PURPOSE COPARATIVE LIMITED</a>
+            
+            <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
+                <a href="home_page.html#services" class="hover:text-orange-500 transition duration-150">Services</a>
+                <a href="home_page.html#projects" class="hover:text-orange-500 transition duration-150">Projects</a>
+                <a href="department_contacts.html" class="hover:text-orange-500 transition duration-150 text-orange-500 font-bold">Contacts</a>
+                <a href="home_page.html#about" class="hover:text-orange-500 transition duration-150">About Us</a>
+                
+                <div id="theme-toggle" class="theme-toggle">
+                    <div class="theme-toggle-slider">
+                        <i class="fas fa-moon text-gray-700"></i>
+                    </div>
+                </div>
+                
+                <a href="#" class="bg-orange-500 text-black py-2 px-4 rounded-lg hover:bg-orange-600 transition duration-300 shadow-xl">GET A QUOTE</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        
+        <div id="mobile-menu" class="hidden md:hidden pb-4 header-bg">
+            <a href="home_page.html#services" class="block py-2 px-6 text-sm hover:bg-gray-800 transition">Services</a>
+            <a href="home_page.html#projects" class="block py-2 px-6 text-sm hover:bg-gray-800 transition">Projects</a>
+            <a href="department_contacts.html" class="block py-2 px-6 text-sm hover:bg-gray-800 transition font-bold text-orange-500">Contacts</a>
+            <a href="home_page.html#about" class="block py-2 px-6 text-sm hover:bg-gray-800 transition">About Us</a>
+            
+            <div class="flex items-center justify-between px-6 py-2 border-t border-b border-gray-700/50">
+                <span class="text-sm font-semibold">Theme</span>
+                <div id="mobile-theme-toggle" class="theme-toggle">
+                    <div class="theme-toggle-slider">
+                        <i class="fas fa-moon text-gray-700"></i>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="block py-2 px-6 text-sm bg-orange-500 text-black text-center font-semibold mt-2 mx-6 rounded-lg hover:bg-orange-600 transition">GET A QUOTE</a>
+        </div>
+    </header>
+
+    <main>
+        
+        <section class="pt-32 pb-20 container mx-auto px-6">
+            <h1 class="text-5xl font-extrabold text-center mb-4 uppercase tracking-wider">
+                <span class="text-orange-500">Department</span> Contacts
+            </h1>
+            <p class="text-center text-xl opacity-70 mb-12 max-w-2xl mx-auto">
+                Reach the right team quickly. Use the dedicated contacts below for specific inquiries related to our operations, safety, and administration.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                
+                <div class="card-bg rounded-xl p-8 shadow-2xl transition duration-300 hover:shadow-orange-500/30">
+                    <img src="images/miniing oparations.jpg" alt="Mine Operations Icon" class="department-image">
+                    <h3 class="text-3xl font-bold mb-4">Mine Operations</h3>
+                    <p class="opacity-80 mb-6">For immediate on-site operational concerns, daily scheduling, and resource allocation.</p>
+                    
+                    <ul class="space-y-3">
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-user-hard-hat w-6 text-orange-500"></i>
+                            <span class="ml-3 font-semibold">Contact:</span> Chief Operations Officer
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-envelope w-6 text-orange-500"></i>
+                            <span class="ml-3"><a href="mailto:operations@kangelshacoop.com" class="hover:text-orange-500">operations@kangelshacoop.com</a></span>
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-phone w-6 text-orange-500"></i>
+                            <span class="ml-3">Hotline: <a href="tel:+15555551001" class="hover:text-orange-500">+1 (555) 555-1001</a></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-bg rounded-xl p-8 shadow-2xl transition duration-300 hover:shadow-orange-500/30">
+                    <img src=" images/safty.jpg" alt="Safety Health Icon" class="department-image">
+                    <h3 class="text-3xl font-bold mb-4">SHE Department</h3>
+                    <p class="opacity-80 mb-6">For incident reporting, safety audits, training, and environmental compliance.</p>
+                    
+                    <ul class="space-y-3">
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-exclamation-triangle w-6 text-orange-500"></i>
+                            <span class="ml-3 font-semibold">Emergency:</span> Safety Officer
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-envelope w-6 text-orange-500"></i>
+                            <span class="ml-3"><a href="mailto:safety@kangelshacoop.com" class="hover:text-orange-500">safety@kangelshacoop.com</a></span>
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-phone w-6 text-orange-500"></i>
+                            <span class="ml-3">Hotline: <a href="tel:+15555551002" class="hover:text-orange-500">+1 (555) 555-1002</a></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-bg rounded-xl p-8 shadow-2xl transition duration-300 hover:shadow-orange-500/30">
+                    <img src=" images/geogr.jpg" alt="Geology Exploration Icon" class="department-image">
+                    <h3 class="text-3xl font-bold mb-4">Geology & Exploration</h3>
+                    <p class="opacity-80 mb-6">For resource modeling, drilling programs, and long-term ore body planning.</p>
+                    
+                    <ul class="space-y-3">
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-map-marker-alt w-6 text-orange-500"></i>
+                            <span class="ml-3 font-semibold">Contact:</span> Chief Geologist
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-envelope w-6 text-orange-500"></i>
+                            <span class="ml-3"><a href="mailto:geology@kangelshacoop.com" class="hover:text-orange-500">geology@kangelshacoop.com</a></span>
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-phone w-6 text-orange-500"></i>
+                            <span class="ml-3">Office: <a href="tel:+15555551003" class="hover:text-orange-500">+1 (555) 555-1003</a></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-bg rounded-xl p-8 shadow-2xl transition duration-300 hover:shadow-orange-500/30">
+                    <img src=" images/eng_and_maintenance.jpg" alt="Engineering Maintenance Icon" class="department-image">
+                    <h3 class="text-3xl font-bold mb-4">Engineering & Maintenance</h3>
+                    <p class="opacity-80 mb-6">For equipment repair requests, plant integrity, and engineering project oversight.</p>
+                    
+                    <ul class="space-y-3">
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-tools w-6 text-orange-500"></i>
+                            <span class="ml-3 font-semibold">Contact:</span> Maintenance Manager
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-envelope w-6 text-orange-500"></i>
+                            <span class="ml-3"><a href="mailto:maintenance@kangelshacoop.com" class="hover:text-orange-500">maintenance@kangelshacoop.com</a></span>
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-phone w-6 text-orange-500"></i>
+                            <span class="ml-3">Hotline: <a href="tel:+15555551004" class="hover:text-orange-500">+1 (555) 555-1004</a></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-bg rounded-xl p-8 shadow-2xl transition duration-300 hover:shadow-orange-500/30">
+                    <img src=" images/pl.png" alt="Process Plant Icon" class="department-image">
+                    <h3 class="text-3xl font-bold mb-4">Process Plant</h3>
+                    <p class="opacity-80 mb-6">For inquiries related to crushing, grinding, mineral recovery, and product quality assurance.</p>
+                    
+                    <ul class="space-y-3">
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-vial w-6 text-orange-500"></i>
+                            <span class="ml-3 font-semibold">Contact:</span> Plant Manager
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-envelope w-6 text-orange-500"></i>
+                            <span class="ml-3"><a href="mailto:process@kangelshacoop.com" class="hover:text-orange-500">process@kangelshacoop.com</a></span>
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-phone w-6 text-orange-500"></i>
+                            <span class="ml-3">Office: <a href="tel:+15555551005" class="hover:text-orange-500">+1 (555) 555-1005</a></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-bg rounded-xl p-8 shadow-2xl transition duration-300 hover:shadow-orange-500/30">
+                    <img src=" images/Procurement.jpg" alt="Procurement Icon" class="department-image">
+                    <h3 class="text-3xl font-bold mb-4">Procurement</h3>
+                    <p class="opacity-80 mb-6">For sourcing, vendor queries, purchase orders, and logistics management.</p>
+                    
+                    <ul class="space-y-3">
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-truck-ramp-box w-6 text-orange-500"></i>
+                            <span class="ml-3 font-semibold">Contact:</span> Procurement Manager
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-envelope w-6 text-orange-500"></i>
+                            <span class="ml-3"><a href="mailto:purchasing@kangelshacoop.com" class="hover:text-orange-500">purchasing@kangelshacoop.com</a></span>
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-phone w-6 text-orange-500"></i>
+                            <span class="ml-3">Office: <a href="tel:+15555551006" class="hover:text-orange-500">+1 (555) 555-1006</a></span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="card-bg rounded-xl p-8 shadow-2xl transition duration-300 hover:shadow-orange-500/30">
+                    <img src=" images/hr.jpg" alt="Human Resources Icon" class="department-image">
+                    <h3 class="text-3xl font-bold mb-4">Human Resources</h3>
+                    <p class="opacity-80 mb-6">For careers, employment verification, benefits, and employee relations.</p>
+                    
+                    <ul class="space-y-3">
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-briefcase w-6 text-orange-500"></i>
+                            <span class="ml-3 font-semibold">Recruitment:</span> Talent Acquisition
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-envelope w-6 text-orange-500"></i>
+                            <span class="ml-3"><a href="mailto:careers@kangelshacoop.com" class="hover:text-orange-500">careers@kangelshacoop.com</a></span>
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-phone w-6 text-orange-500"></i>
+                            <span class="ml-3">Office: <a href="tel:+15555551007" class="hover:text-orange-500">+1 (555) 555-1007</a></span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="card-bg rounded-xl p-8 shadow-2xl transition duration-300 hover:shadow-orange-500/30">
+                    <img src=" images/comp_legal.jpg" alt="Legal Compliance Icon" class="department-image">
+                    <h3 class="text-3xl font-bold mb-4">Legal & Compliance</h3>
+                    <p class="opacity-80 mb-6">For contract review, regulatory questions, and corporate governance.</p>
+                    
+                    <ul class="space-y-3">
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-scroll w-6 text-orange-500"></i>
+                            <span class="ml-3 font-semibold">Contact:</span> General Counsel
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-envelope w-6 text-orange-500"></i>
+                            <span class="ml-3"><a href="mailto:legal@kangelshacoop.com" class="hover:text-orange-500">legal@kangelshacoop.com</a></span>
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-fax w-6 text-orange-500"></i>
+                            <span class="ml-3">Fax: <a href="tel:+15555551008" class="hover:text-orange-500">+1 (555) 555-1008</a></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-bg rounded-xl p-8 shadow-2xl transition duration-300 hover:shadow-orange-500/30">
+                    <img src=" images/community.jpg" alt="Community Relations Icon" class="department-image">
+                    <h3 class="text-3xl font-bold mb-4">Community Relations</h3>
+                    <p class="opacity-80 mb-6">For social responsibility, local sponsorships, and community feedback.</p>
+                    
+                    <ul class="space-y-3">
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-comments w-6 text-orange-500"></i>
+                            <span class="ml-3 font-semibold">Contact:</span> Community Liaison
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-envelope w-6 text-orange-500"></i>
+                            <span class="ml-3"><a href="mailto:community@kangelshacoop.com" class="hover:text-orange-500">community@kangelshacoop.com</a></span>
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-phone w-6 text-orange-500"></i>
+                            <span class="ml-3">Office: <a href="tel:+15555551009" class="hover:text-orange-500">+1 (555) 555-1009</a></span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="card-bg rounded-xl p-8 shadow-2xl transition duration-300 hover:shadow-orange-500/30">
+                    <img src=" images/sales.jpg" alt="Sales Team Icon" class="department-image">
+                    <h3 class="text-3xl font-bold mb-4">Sales Team</h3>
+                    <p class="opacity-80 mb-6">For project proposals, quotes, and new business inquiries.</p>
+                    
+                    <ul class="space-y-3">
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-user-tie w-6 text-orange-500"></i>
+                            <span class="ml-3 font-semibold">Contact:</span> Jane Doe, Sales Manager
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-envelope w-6 text-orange-500"></i>
+                            <span class="ml-3"><a href="mailto:sales@kangelshacoop.com" class="hover:text-orange-500">sales@kangelshacoop.com</a></span>
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-phone w-6 text-orange-500"></i>
+                            <span class="ml-3">Phone: <a href="tel:+15551234567" class="hover:text-orange-500">+1 (555) 123-4567</a></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-bg rounded-xl p-8 shadow-2xl transition duration-300 hover:shadow-orange-500/30">
+                    <img src=" images/it.jpg" alt="IT Department Icon" class="department-image">
+                    <h3 class="text-3xl font-bold mb-4">I.T. Department</h3>
+                    <p class="opacity-80 mb-6">For technical support, website issues, and system help desk.</p>
+                    
+                    <ul class="space-y-3">
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-ticket-alt w-6 text-orange-500"></i>
+                            <span class="ml-3 font-semibold">Help Desk:</span> Internal Support
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-envelope w-6 text-orange-500"></i>
+                            <span class="ml-3"><a href="mailto:support@kangelshacoop.com" class="hover:text-orange-500">support@kangelshacoop.com</a></span>
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-phone w-6 text-orange-500"></i>
+                            <span class="ml-3">Hotline: <a href="tel:+15559876543" class="hover:text-orange-500">+1 (555) 987-6543</a></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-bg rounded-xl p-8 shadow-2xl transition duration-300 hover:shadow-orange-500/30">
+                    <img src=" images/accounting.jpg" alt="Accounting Contact Icon" class="department-image">
+                    <h3 class="text-3xl font-bold mb-4">Accounting</h3>
+                    <p class="opacity-80 mb-6">For invoices, billing questions, and payment processing.</p>
+                    
+                    <ul class="space-y-3">
+                         <li class="flex items-center opacity-90">
+                            <i class="fas fa-user w-6 text-orange-500"></i>
+                            <span class="ml-3 font-semibold">Contact:</span> Accounts Payable
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-envelope w-6 text-orange-500"></i>
+                            <span class="ml-3"><a href="mailto:accounting@kangelshacoop.com" class="hover:text-orange-500">accounting@kangelshacoop.com</a></span>
+                        </li>
+                        <li class="flex items-center opacity-90">
+                            <i class="fas fa-fax w-6 text-orange-500"></i>
+                            <span class="ml-3">Fax: <a href="tel:+15553217890" class="hover:text-orange-500">+1 (555) 321-7890</a></span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-12 border-t border-gray-700/50 section-bg mt-auto">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+                <div class="mb-6 md:mb-0">
+                    <h4 class="text-xl font-bold text-orange-500 mb-3">Connect With Us</h4>
+                    <p class="opacity-70">
+                        General Inquiries: <a href="mailto:info@kangelshacoop.com" class="hover:text-orange-500 transition">info@kangelshacoop.com</a>
+                    </p>
+                    <p class="opacity-70">
+                        Project Quotes: <a href="mailto:sales@kangelshacoop.com" class="hover:text-orange-500 transition">sales@kangelshacoop.com</a>
+                    </p>
+                </div>
+
+                <div class="flex space-x-6 text-3xl">
+                    <a href=" " target="_blank" class="opacity-70 hover:text-orange-500 transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href=" " target="_blank" class="opacity-70 hover:text-orange-500 transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href=" " target="_blank" class="opacity-70 hover:text-orange-500 transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href=" " target="_blank" class="opacity-70 hover:text-orange-500 transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="text-center text-sm opacity-70 border-t border-gray-700/50 pt-4">
+                <p>&copy; <span id="current-year"></span> KANGELESHA-MULTI-PURPOSE COPARATIVE LIMITED. All rights reserved. </p>
+                <div class="mt-2 space-x-4">
+                    <a href="home_page.html#about" class="hover:text-orange-500">Careers</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-orange-500">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-orange-500">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const currentYear = document.getElementById('current-year');
+            
+            // --- Theme Toggle Elements ---
+            const themeToggle = document.getElementById('theme-toggle');
+            const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+            const body = document.body;
+            // -----------------------------
+
+            // Set current year in footer
+            currentYear.textContent = new Date().getFullYear();
+
+            // --- Theme Toggle Logic ---
+            
+            // Function to update the toggle switch icon and state
+            function updateToggleIcon(isLight) {
+                const icons = document.querySelectorAll('.theme-toggle-slider i');
+                const toggles = document.querySelectorAll('.theme-toggle');
+                
+                icons.forEach(icon => {
+                    if (isLight) {
+                        // Light mode: show sun icon
+                        icon.className = 'fas fa-sun text-yellow-500';
+                    } else {
+                        // Dark mode: show moon icon
+                        icon.className = 'fas fa-moon text-gray-700';
+                    }
+                });
+                
+                toggles.forEach(toggle => {
+                    // 'active' class slides the switch and changes the background color
+                    if (isLight) {
+                        toggle.classList.add('active');
+                    } else {
+                        toggle.classList.remove('active');
+                    }
+                });
+            }
+
+            // Theme toggle function
+            function toggleTheme() {
+                const isLight = body.classList.contains('light-mode');
+                
+                if (isLight) {
+                    // Switch to dark mode
+                    body.classList.remove('light-mode');
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark-mode');
+                    updateToggleIcon(false);
+                } else {
+                    // Switch to light mode
+                    body.classList.remove('dark-mode');
+                    body.classList.add('light-mode');
+                    localStorage.setItem('theme', 'light-mode');
+                    updateToggleIcon(true);
+                }
+            }
+
+            // Load saved theme preference on page load (FOUC prevention)
+            const savedTheme = localStorage.getItem('theme') || 'dark-mode';
+            body.className = savedTheme; // Set initial body class
+            updateToggleIcon(savedTheme === 'light-mode'); // Set initial icon state
+
+            // Add click events to both toggles
+            themeToggle.addEventListener('click', toggleTheme);
+            mobileThemeToggle.addEventListener('click', toggleTheme);
+            // --- End Theme Toggle Logic ---
+
+
+            // Toggle mobile menu visibility
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when a link is clicked
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                // Ignore the theme toggle switch itself
+                if (link.closest('#mobile-theme-toggle')) return;
+                
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+            
+        });
+    </script>
+
+</body>
+</html>

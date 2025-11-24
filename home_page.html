@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KANGELESHA-MULTI-PURPOSE COPARATIVE LIMITED </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            /* Smooth transition for theme change */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* --- THEME STYLES (from 2.html) --- */
+
+        /* Dark mode base styles */
+        body.dark-mode {
+            background-color: #0d0d0d;
+            color: #e5e7eb;
+        }
+
+        /* Light mode base styles */
+        body.light-mode {
+            background-color: #ffffff;
+            color: #1f2937;
+        }
+
+        /* Header Background */
+        body.dark-mode .header-bg {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        body.light-mode .header-bg {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Section Backgrounds (e.g., Projects section) */
+        body.dark-mode .section-bg {
+            background-color: #1a1a1a;
+        }
+
+        body.light-mode .section-bg {
+            background-color: #f9fafb;
+        }
+
+        /* Card Backgrounds (e.g., Services cards) */
+        body.dark-mode .card-bg {
+            background-color: #1f2937;
+        }
+
+        body.light-mode .card-bg {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+        }
+
+        /* --- THEME TOGGLE SWITCH (from 2.html) --- */
+        .theme-toggle {
+            cursor: pointer;
+            width: 60px;
+            height: 30px;
+            background-color: #4b5563; /* Gray in dark mode */
+            border-radius: 15px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-toggle.active {
+            background-color: #f97316; /* Orange in light mode */
+        }
+
+        .theme-toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .theme-toggle.active .theme-toggle-slider {
+            transform: translateX(30px);
+        }
+        /* --- END THEME STYLES --- */
+
+        /* Style for the hero button glow */
+        .cta-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(249, 115, 22, 0);
+        }
+        .cta-button:hover {
+            box-shadow: 0 0 20px rgba(249, 115, 22, 0.6);
+        }
+
+        /* --- Background Slider CSS --- */
+        .hero-background-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .hero-background-slide.active {
+            opacity: 1;
+        }
+
+        /* Placeholder Images (using local paths from home_page.html) */
+        .bg-img-1 { background-image: url('images/Проверка безопасности_ инспекция высоконапорных шлангов на шахте.jpeg'); }
+        .bg-img-2 { background-image: url('  images/engineering strength.jpeg'); }
+        .bg-img-3 { background-image: url(' images/Safety equipment on rubble at a construction demolition site.jpeg'); }
+        .bg-img-4 { background-image: url(' images/download.jpeg'); }
+        /* --- End Background Slider CSS --- */
+
+        /* --- Scrollbar Hide for horizontal scrolling (to clean up the look) --- */
+        .scrollbar-hide {
+            /* For IE and Edge */
+            -ms-overflow-style: none;
+            /* For Firefox */
+            scrollbar-width: none;
+        }
+
+        /* For Chrome, Safari, and Opera */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        /* --- End Scrollbar Hide CSS --- */
+
+    </style>
+</head>
+<body>
+
+    <header id="navbar" class="fixed top-0 left-0 right-0 z-50 header-bg backdrop-blur-sm shadow-lg transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl md:text-2xl font-bold text-orange-500 tracking-wider">KANGELESHA-MULTI-PURPOSE COPARATIVE LIMITED</a>
+
+            <div class="hidden md:flex space-x-8 items-center text-sm font-medium">
+                <a href="#services" class="hover:text-orange-500 transition duration-150">Services</a>
+                <a href="#projects" class="hover:text-orange-500 transition duration-150">Projects</a>
+                <a href=" department_contacts.html" class="hover:text-orange-500 transition duration-150"> DEPMENT INFORMATION </a>
+                <a href="#about" class="hover:text-orange-500 transition duration-150">About Us</a>
+
+                <div id="theme-toggle" class="theme-toggle">
+                    <div class="theme-toggle-slider">
+                        <i class="fas fa-moon text-gray-700"></i>
+                    </div>
+                </div>
+
+                <a href="#" class="bg-orange-500 text-black py-2 px-4 rounded-lg hover:bg-orange-600 transition duration-300 shadow-xl">GET A QUOTE</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden pb-4 header-bg">
+            <a href="#services" class="block py-2 px-6 text-sm hover:bg-gray-800 transition">Services</a>
+            <a href="#projects" class="block py-2 px-6 text-sm hover:bg-gray-800 transition">Projects</a>
+            <a href="department_contacts.html" class="block py-2 px-6 text-sm hover:bg-gray-800 transition">DEPATMENT INFOMATION </a>
+            <a href="#about" class="block py-2 px-6 text-sm hover:bg-gray-800 transition">About Us</a>
+
+            <div class="flex items-center justify-between px-6 py-2 border-t border-b border-gray-700/50">
+                <span class="text-sm font-semibold">Theme</span>
+                <div id="mobile-theme-toggle" class="theme-toggle">
+                    <div class="theme-toggle-slider">
+                         <i class="fas fa-moon text-gray-700"></i>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="block py-2 px-6 text-sm bg-orange-500 text-black text-center font-semibold mt-2 mx-6 rounded-lg hover:bg-orange-600 transition">GET A QUOTE</a>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="relative h-screen flex items-center justify-center pt-20 overflow-hidden">
+
+            <div id="hero-slider" class="absolute inset-0">
+                <div class="hero-background-slide bg-img-1 active"></div>
+                <div class="hero-background-slide bg-img-2"></div>
+                <div class="hero-background-slide bg-img-3"></div>
+                <div class="hero-background-slide bg-img-4"></div>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-black/30"></div>
+            </div>
+
+            <div class="relative z-10 text-center px-6 max-w-4xl">
+                <h1 class="text-6xl md:text-8xl font-extrabold text-white leading-tight mb-4 tracking-tighter">
+                    <span class="text-orange-500">KANGELESHA-MULTI-PURPOSE COPARATIVE LIMITED </span> PROJECTS DONE RIGHT
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-xl mx-auto">
+                    North America's trusted mining services contractor, delivering complex projects with precision and safety.
+                </p>
+                <a href="#services" class="cta-button inline-block bg-orange-500 text-black text-lg font-bold py-3 px-8 rounded-xl uppercase shadow-2xl hover:bg-orange-600">
+                    Explore Our Capabilities
+                </a>
+            </div>
+        </section>
+
+        <section id="services" class="py-20 md:py-32 container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 uppercase tracking-wide">Our <span class="text-orange-500">Services</span></h2>
+
+            <div id="services-carousel" class="flex space-x-8 overflow-x-auto pb-4 scrolling-touch flex-nowrap scrollbar-hide">
+
+                <div class="card-bg rounded-xl p-6 shadow-2xl transition duration-300 hover:bg-orange-500 hover:text-white transform hover:-translate-y-2 min-w-[300px]">
+                    <h3 class="text-2xl font-semibold mb-3">Contract Mining</h3>
+                    <p class="opacity-80">
+                        We manage your mine from pit to plant, ensuring maximum efficiency and adherence to the strictest environmental and safety standards.
+                    </p>
+                    <div class="mt-4 font-semibold">Learn More &rarr;</div>
+                </div>
+
+                <div class="card-bg rounded-xl p-6 shadow-2xl transition duration-300 hover:bg-orange-500 hover:text-white transform hover:-translate-y-2 min-w-[300px]">
+                    <h3 class="text-2xl font-semibold mb-3">Overburden Removal</h3>
+                    <p class="opacity-80">
+                        High-volume material movement utilizing a massive fleet of modern, GPS-equipped heavy machinery for rapid site preparation.
+                    </p>
+                    <div class="mt-4 font-semibold">Learn More &rarr;</div>
+                </div>
+
+                <div class="card-bg rounded-xl p-6 shadow-2xl transition duration-300 hover:bg-orange-500 hover:text-white transform hover:-translate-y-2 min-w-[300px]">
+                    <h3 class="text-2xl font-semibold mb-3">Crushing & Screening</h3>
+                    <p class="opacity-80">
+                        On-site processing capabilities delivering consistent, high-quality material output customized to your specifications.
+                    </p>
+                    <div class="mt-4 font-semibold">Learn More &rarr;</div>
+                </div>
+
+                <div class="card-bg rounded-xl p-6 shadow-2xl transition duration-300 hover:bg-orange-500 hover:text-white transform hover:-translate-y-2 min-w-[300px]">
+                    <h3 class="text-2xl font-semibold mb-3">Reclamation & Closure</h3>
+                    <p class="opacity-80">
+                        Our commitment to the environment extends to site rehabilitation, ensuring long-term ecological balance after project completion.
+                    </p>
+                    <div class="mt-4 font-semibold">Learn More &rarr;</div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 md:py-32 section-bg border-t border-b border-gray-700/50">
+            <div class="container mx-auto px-6 max-w-5xl text-center">
+                <h2 class="text-5xl font-bold mb-4">DISCOVER OUR <span class="text-orange-500">COMMITMENT</span></h2>
+                <p class="text-xl opacity-70 mb-10 max-w-3xl mx-auto">
+                    A deep dive into the KANGELESHA-MULTI-PURPOSE COPARATIVE LIMITED philosophy: Safety, Sustainability, and World-Class Execution.
+                </p>
+
+                <div class="relative w-full h-96 rounded-2xl overflow-hidden shadow-2xl group cursor-pointer">
+                    <img src=" images/Проверка безопасности_ инспекция высоконапорных шлангов на шахте.jpeg" alt="A dramatic shot of the mine site" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03] opacity-80">
+
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-20 h-20 bg-orange-500/90 rounded-full flex items-center justify-center transform transition duration-300 group-hover:scale-110 shadow-xl">
+                            <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="py-12 border-t border-gray-700/50">
+            <div class="container mx-auto px-6">
+
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+                    <div class="mb-6 md:mb-0">
+                        <h4 class="text-xl font-bold text-orange-500 mb-3">Connect With Us</h4>
+                        <p class="opacity-70">
+                            General Inquiries: <a href="mailto:info@kangelshacoop.com" class="hover:text-orange-500 transition">info@kangelshacoop.com</a>
+                        </p>
+                        <p class="opacity-70">
+                            Project Quotes: <a href="mailto:sales@kangelshacoop.com" class="hover:text-orange-500 transition">sales@kangelshacoop.com</a>
+                        </p>
+                    </div>
+
+                    <div class="flex space-x-6 text-3xl">
+                        <a href=" " target="_blank" class="opacity-70 hover:text-orange-500 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href=" " target="_blank" class="opacity-70 hover:text-orange-500 transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href=" " target="_blank" class="opacity-70 hover:text-orange-500 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href=" " target="_blank" class="opacity-70 hover:text-orange-500 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="text-center text-sm opacity-70 border-t border-gray-700/50 pt-4">
+                    <p>&copy; <span id="current-year"></span> KANGELESHA-MULTI-PURPOSE COPARATIVE LIMITED. All rights reserved. </p>
+                    <div class="mt-2 space-x-4">
+                        <a href="#about" class="hover:text-orange-500">Careers</a>
+                        <span>|</span>
+                        <a href="#" class="hover:text-orange-500">Privacy Policy</a>
+                        <span>|</span>
+                        <a href="#" class="hover:text-orange-500">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const currentYear = document.getElementById('current-year');
+            const slides = document.querySelectorAll('#hero-slider .hero-background-slide');
+
+            // --- Theme Toggle Elements ---
+            const themeToggle = document.getElementById('theme-toggle');
+            const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+            const body = document.body;
+            // -----------------------------
+
+            let currentSlide = 0;
+            const slideInterval = 5000; // Change image every 5 seconds
+
+            // Set current year in footer
+            currentYear.textContent = new Date().getFullYear();
+
+            // --- Theme Toggle Logic ---
+            function updateToggleIcon(isLight) {
+                const icons = document.querySelectorAll('.theme-toggle-slider i');
+                const toggles = document.querySelectorAll('.theme-toggle');
+
+                icons.forEach(icon => {
+                    if (isLight) {
+                        icon.className = 'fas fa-sun text-yellow-500';
+                    } else {
+                        icon.className = 'fas fa-moon text-gray-700';
+                    }
+                });
+
+                toggles.forEach(toggle => {
+                    if (isLight) {
+                        toggle.classList.add('active');
+                    } else {
+                        toggle.classList.remove('active');
+                    }
+                });
+            }
+
+            function toggleTheme() {
+                const isLight = body.classList.contains('light-mode');
+
+                if (isLight) {
+                    body.classList.remove('light-mode');
+                    body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark-mode');
+                    updateToggleIcon(false);
+                } else {
+                    body.classList.remove('dark-mode');
+                    body.classList.add('light-mode');
+                    localStorage.setItem('theme', 'light-mode');
+                    updateToggleIcon(true);
+                }
+            }
+
+            const savedTheme = localStorage.getItem('theme') || 'dark-mode';
+            body.className = savedTheme;
+            updateToggleIcon(savedTheme === 'light-mode');
+
+            themeToggle.addEventListener('click', toggleTheme);
+            mobileThemeToggle.addEventListener('click', toggleTheme);
+            // --- End Theme Toggle Logic ---
+
+
+            // Toggle mobile menu visibility
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when a link is clicked
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                if (link.closest('#mobile-theme-toggle')) return;
+
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // --- Background Slider Logic ---
+            const nextSlide = () => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            };
+
+            // Start the slide show
+            setInterval(nextSlide, slideInterval);
+
+            // -----------------------------------------------------------------
+            // NEW: Automatic Horizontal Scroll for Services Carousel
+            // -----------------------------------------------------------------
+
+            const servicesContainer = document.getElementById('services-carousel');
+            let scrollSpeed = 0.5; // Controls the speed of the scroll (pixels per update)
+            const scrollDelay = 20; // Controls the smoothness (update frequency in milliseconds)
+            let scrollInterval;
+
+            const autoScrollServices = () => {
+                if (!servicesContainer) return;
+
+                // Check if the container is scrolled all the way to the right
+                // The tolerance of '1' handles floating point errors in browser calculations
+                const isAtEnd = servicesContainer.scrollLeft + servicesContainer.clientWidth >= servicesContainer.scrollWidth - 1;
+
+                if (isAtEnd) {
+                    // Smoothly scroll back to the start (0)
+                    servicesContainer.scrollTo({
+                        left: 0,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Scroll to the right by the defined speed
+                    servicesContainer.scrollLeft += scrollSpeed;
+                }
+            };
+
+            const startScrolling = () => {
+                if (!scrollInterval) {
+                    // Only start if content overflows (i.e., if scrolling is actually needed)
+                    if (servicesContainer && servicesContainer.scrollWidth > servicesContainer.clientWidth) {
+                        scrollInterval = setInterval(autoScrollServices, scrollDelay);
+                    }
+                }
+            };
+
+            const pauseScrolling = () => {
+                clearInterval(scrollInterval);
+                scrollInterval = null;
+            };
+
+            // Start the scrolling when the page loads
+            startScrolling();
+
+            // Pause scrolling on hover (desktop) or touch start (mobile)
+            if (servicesContainer) {
+                // Pause on hover (for desktop users)
+                servicesContainer.addEventListener('mouseenter', pauseScrolling);
+                servicesContainer.addEventListener('mouseleave', startScrolling);
+
+                // Pause on touch (for mobile users)
+                servicesContainer.addEventListener('touchstart', pauseScrolling);
+                servicesContainer.addEventListener('touchend', startScrolling);
+            }
+
+            // -----------------------------------------------------------------
+            // END Automatic Horizontal Scroll
+            // -----------------------------------------------------------------
+        });
+    </script>
+
+</body>
+</html>
